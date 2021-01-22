@@ -1,0 +1,648 @@
+* 
+* No part of this file can be released without the consent of SMIC.
+*
+**************************************************************************************************************
+* SMIC 40nm Logic Low Leakage 1P10M(1P9M, 1P8M, 1P7M) 0.242um^2 1.1V SRAM Cell SPICE model (for HSPICE only) *
+**************************************************************************************************************
+*
+* Release version    : 1.4
+*
+* Release date       : 11/30/2012
+*
+* Simulation tool    : Synopsys HSPICE version C-2008.09
+*
+* Model type         :
+*   MOSFET           : HSPICE Level 54(BSIM4v4.5)
+* 
+* Model name         :
+*   MOSFET           : Cell Area=0.299um^2 (pre-shrink)
+*        *------------------------------------------------------* 
+*        |            MOSFET type              |   1.1V         |
+*        |======================================================| 
+*        |   N Pull Down (W/L=0.142/0.055)     |  dslnfetpd_ckt |
+*        *------------------------------------------------------*
+*        |   N Pass Gate (W/L=0.11/0.059)      |  dslnfetwl_ckt |
+*        *------------------------------------------------------*
+*        |   P Load      (W/L=0.06/0.055)      |  dslpfetpu_ckt |
+*        *------------------------------------------------------*
+*
+*	 NOTE: Size Inform in table is for model reference only, CANNOT be directly used in netlist for simulation.
+*	       Please find the correct inform in model corresponding readme file. Thanks!
+*
+*
+* Valid temperature range is from -40C to 125C
+*
+***********************************************************************************
+*                              Pull Down NMOS MODEL                               *
+***********************************************************************************
+**
+.model  dslnfetpd_ckt1  nmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 4.95e-008       lmax    = 4.95e-008       wmin    = 1.275e-007      wmax    = 1.275e-007    
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 0             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-009+dtoxe_dslnfetpd_ckt'  dtox    = 2.12e-010       epsrox  = 3.9           
++toxref  = 2.37e-009       wint    = -2.25e-008      lint    = 8.8e-010        ll      = -2.845747e-016
++wl      = -9.27071e-016   lln     = 1               wln     = 0.86            lw      = -9.6e-016     
++ww      = 2.7e-016        lwn     = 1.02            wwn     = 1               lwl     = 3.0135e-023   
++wwl     = 1.69604e-022    llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '8.6e-009+dxl_dslnfetpd_ckt'
++xw      = '-4.2e-009+dxw_dslnfetpd_ckt'  dlc     = 7.62e-009       dwc     = 0               dlcig   = 3.5e-010      
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = vth0_pd1  k1      = 0.42431         k2      = -0.025585       k3      = 83.2          
++k3b     = 0               w0      = 2.5e-006        dvt0    = 0               dvt1    = 2.0671        
++dvt2    = 0               dvt0w   = 0               dvt1w   = 5724000         dvt2w   = -0.032        
++dsub    = 0.56            minv    = -0.35216        voffl   = -1e-009         dvtp0   = 9.535818e-006 
++dvtp1   = 0               lpe0    = 0               lpeb    = 0               vbm     = -3            
++xj      = 9.7e-008        ngate   = 2e+021          ndep    = 1.6e+017        phin    = 0.07032       
++cdsc    = 0.00036         cdscb   = 5e-005          cdscd   = 2e-005          cit     = '0.0017955+dcit_dslnfetpd_ckt'
++voff    = voff_pd1  nfactor = 1.3             eta0    = '0.20385+deta0_dslnfetpd_ckt'  etab    = -0.12584      
++u0      = '0.017762+du0_dslnfetpd_ckt'  ua      = -8.7437e-010    ub      = ub_pd1  uc      = 1.7247e-010   
++eu      = 1.67            vsat    = '102800+dvsat_dslnfetpd_ckt'  a0      = 2.3             ags     = 0.82938       
++a1      = 0               a2      = 1               b0      = 2.1597e-008     b1      = 0             
++keta    = -0.0085         dwg     = 0               dwb     = 0               pclm    = 0.042628      
++pdiblc1 = 0               pdiblc2 = 0               pdiblcb = 0               drout   = 0.56          
++pvag    = 0               delta   = 0.0107568       pscbe1  = 6.24e+008       pscbe2  = 1e-005        
++pdits   = 1.12335         pditsd  = 1.8439          pditsl  = 4357153         rsh     = 12            
++rsw     = 24              rdw     = 24              rdwmin  = 0               rswmin  = 0             
++prwg    = 1               prwb    = 0               wr      = 1               alpha0  = 7.00602e-008  
++alpha1  = 1.3046          beta0   = 13.39           agidl   = '1.3084e-012+dagidl_dslnfetpd_ckt'  bgidl   = 2.7027e+008   
++cgidl   = 15.206          egidl   = 0.11216         aigbacc = 0.02487         bigbacc = 0.00171       
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949      
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3               aigc    = 0.012948      
++bigc    = 0.0015549       cigc    = 0.03066         aigsd   = 0.01038         bigsd   = 8.5433e-005   
++cigsd   = 0.001674        nigc    = 2.43            poxedge = 1               pigcd   = 2.1074        
++ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '6.73e-011+dcgso_dslnfetpd_ckt'  cgdo    = '6.73e-011+dcgdo_dslnfetpd_ckt'  cgbo    = 0               cgdl    = '5.7e-011+dcgdl_dslnfetpd_ckt'
++cgsl    = '5.7e-011+dcgsl_dslnfetpd_ckt'  clc     = 1e-007          cle     = 0.6             cf      = '7.715e-011+dcf_dslnfetpd_ckt'
++acde    = 0.247818        moin    = 5.4             noff    = 2.0879          voffcv  = -0.12248      
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.002416        kt1     = -0.27173        kt1l    = -9.546e-011     kt2     = -0.0073638    
++ute     = -0.24155        ua1     = 1.6926e-009     ub1     = -1.5622e-018    uc1     = 1.7425e-011   
++prt     = 5.5             at      = 45501         
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 4.1e+007        ef      = 0.98          
++noia    = 4.7e+041        noib    = 4.29316e+025    noic    = 5.9625e+008     ntnoi   = 1             
++lintnoi = 0             
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 1.71349e-008    jsws    = 2.56848e-014    jswgs   = 5.96e-013       njs     = 0.92934       
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.3             xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 1.9274e-006     jtsswgd = 1.9274e-006     njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.66042         xtsswgd = 0.43569         tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.458831        cjs     = '0.001473228+dcjs_dslnfetpd_ckt'
++mjs     = 0.258409        pbsws   = 0.9848          cjsws   = '5.14781e-011+dcjsws_dslnfetpd_ckt'  mjsws   = 0.22454       
++pbswgs  = 0.2             cjswgs  = '2.8e-010+dcjswgs_dslnfetpd_ckt'  mjswgs  = 0.97            tpb     = 0.00079726    
++tcj     = 0.00055752      tpbsw   = 0.0016917       tcjsw   = 0.0097061       tpbswg  = 0.00016237    
++tcjswg  = 0.00056776      xtis    = 3.38          
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
+
+***********************************************************************************
+*                              Pass Gate NMOS MODEL                               *
+***********************************************************************************
+**
+.model  dslnfetwl_ckt1  nmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 5.3e-008        lmax    = 5.3e-008        wmin    = 9.9e-008        wmax    = 9.9e-008      
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 0             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-009+dtoxe_dslnfetwl_ckt'       dtox    = 2.12e-010       epsrox  = 3.9           
++toxref  = 2.37e-009       wint    = -2.25e-008      lint    = 8.8e-010        ll      = -2.845747e-016
++wl      = -9.27071e-016   lln     = 1               wln     = 0.86            lw      = -9.6e-016     
++ww      = 2.7e-016        lwn     = 1.02            wwn     = 1               lwl     = 3.0135e-023   
++wwl     = 1.69604e-022    llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '7.5e-009+dxl_dslnfetwl_ckt'      
++xw      = '-4.2e-009+dxw_dslnfetwl_ckt'       dlc     = 7.62e-009       dwc     = 0               dlcig   = 3.5e-010      
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = vth0_wl1         k1      = 0.42431         k2      = -0.00035952     k3      = 83.2          
++k3b     = 0               w0      = 2.5e-006        dvt0    = 0               dvt1    = 2.0671        
++dvt2    = 0               dvt0w   = 0               dvt1w   = 5724000         dvt2w   = -0.032        
++dsub    = 0.56            minv    = -0.35216        voffl   = -1e-009         dvtp0   = 9.535818e-006 
++dvtp1   = 0               lpe0    = 0               lpeb    = 0               vbm     = -3            
++xj      = 9.7e-008        ngate   = 2e+021          ndep    = 1.6e+017        phin    = 0.07032       
++cdsc    = 0.00037152      cdscb   = 4.92e-005       cdscd   = 2e-005          cit     = '0.0026751+dcit_dslnfetwl_ckt'     
++voff    = voff_wl1         nfactor = 1.3             eta0    = '0.1946+deta0_dslnfetwl_ckt'          etab    = -0.18242      
++u0      = '0.010934+du0_dslnfetwl_ckt'        ua      = -1.0589e-009    ub      = ub_wl1     uc      = 2.9209e-011   
++eu      = 1.67            vsat    = '101400+dvsat_dslnfetwl_ckt'          a0      = 1               ags     = 1.38          
++a1      = -0.94           a2      = 1               b0      = 2.6781e-008     b1      = 0             
++keta    = -0.0085         dwg     = 0               dwb     = 0               pclm    = 0.20641       
++pdiblc1 = 0               pdiblc2 = 0               pdiblcb = 0               drout   = 0.56          
++pvag    = 0               delta   = 0.0107568       pscbe1  = 6.24e+008       pscbe2  = 1e-005        
++pdits   = 1.12335         pditsd  = 1.4294          pditsl  = 4357153         rsh     = 12            
++rsw     = 24              rdw     = 24              rdwmin  = 0               rswmin  = 0             
++prwg    = 1               prwb    = 0               wr      = 1               alpha0  = 7.00602e-008  
++alpha1  = 1.3046          beta0   = 13.39           agidl   = '2.3091e-012+dagidl_dslnfetwl_ckt'     bgidl   = 6.264e+008    
++cgidl   = 15.206          egidl   = 0               aigbacc = 0.02487         bigbacc = 0.00171       
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949      
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3               aigc    = 0.012234      
++bigc    = 0.0017424       cigc    = 0.035782        aigsd   = 0.01075         bigsd   = 0.000663      
++cigsd   = 0.00204         nigc    = 2.43            poxedge = 1               pigcd   = 3.1821        
++ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '6.73e-011+dcgso_dslnfetwl_ckt'       cgdo    = '6.73e-011+dcgdo_dslnfetwl_ckt'       cgbo    = 0               cgdl    = '5.7e-011+dcgdl_dslnfetwl_ckt'      
++cgsl    = '5.7e-011+dcgsl_dslnfetwl_ckt'        clc     = 1e-007          cle     = 0.6             cf      = '7.715e-011+dcf_dslnfetwl_ckt'    
++acde    = 0.247818        moin    = 5.4             noff    = 2.0879          voffcv  = -0.12248      
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.002352        kt1     = -0.27445        kt1l    = 0               kt2     = -0.052        
++ute     = -0.2781         ua1     = 4.5441e-010     ub1     = -9.9429e-020    uc1     = 6.821e-011    
++prt     = 0               at      = 5000          
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 4.1e+007        ef      = 0.98          
++noia    = 4.7e+041        noib    = 4.29316e+025    noic    = 5.9625e+008     ntnoi   = 1             
++lintnoi = 0             
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 1.71349e-008    jsws    = 2.56848e-014    jswgs   = 5.96e-013       njs     = 0.92934       
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.3             xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 1e-007          jtsswgd = 1.2559e-006     njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.44259         xtsswgd = 0.44259         tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.458831        cjs     = '0.001473228+dcjs_dslnfetwl_ckt'   
++mjs     = 0.258409        pbsws   = 0.9848          cjsws   = '5.14781e-011+dcjsws_dslnfetwl_ckt'    mjsws   = 0.22454       
++pbswgs  = 0.2             cjswgs  = '2.8e-010+dcjswgs_dslnfetwl_ckt'        mjswgs  = 0.97            tpb     = 0.00079726    
++tcj     = 0.00055752      tpbsw   = 0.0016917       tcjsw   = 0.0097061       tpbswg  = 0.00016237    
++tcjswg  = 0.00056776      xtis    = 3.38          
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
+
+***********************************************************************************
+*                              Pull Up PMOS MODEL                               *
+***********************************************************************************
+**
+.model  dslpfetpu_ckt1  pmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 4.95e-008       lmax    = 4.95e-008       wmin    = 5.4e-008        wmax    = 5.4e-008      
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 0             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.7e-009+dtoxe_dslpfetpu_ckt'  dtox    = 2.1e-010        epsrox  = 3.9           
++toxref  = 2.7e-009        wint    = -1.02e-008      lint    = -1.013e-008     ll      = 2.1686916e-016
++wl      = 0               lln     = 1.05            wln     = 1               lw      = 0             
++ww      = 0               lwn     = 1               wwn     = 0.98            lwl     = 0             
++wwl     = 0               llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '9.9e-009+dxl_dslpfetpu_ckt'
++xw      = '-5.2e-009+dxw_dslpfetpu_ckt'  dlc     = 8.28e-009       dwc     = 0               dlcig   = 4e-009        
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = vth0_pu1  k1      = 0.29049         k2      = -0.061888       k3      = 80            
++k3b     = 0               w0      = 2.5e-006        dvt0    = 0.53551         dvt1    = 0.7           
++dvt2    = -0.002          dvt0w   = 0               dvt1w   = 5300000         dvt2w   = -0.032        
++dsub    = 0.56            minv    = -0.28           voffl   = 0               dvtp0   = 1.2947e-006   
++dvtp1   = 0               lambda  = 0               lpe0    = 0               lpeb    = 0             
++xj      = 8.6e-008        ngate   = 8e+020          ndep    = 1e+017          nsd     = 1e+020        
++phin    = 0.06            cdsc    = 0.00024         ud      = 1e+014          up      = 0             
++lp      = 1e-008          cdscb   = 0               cdscd   = 0.001           cit     = '0.0021524+dcit_dslpfetpu_ckt'
++voff    = voff_pu1  nfactor = 1.353           eta0    = '0.077318+deta0_dslpfetpu_ckt'  etab    = -0.036771     
++vfb     = -1              u0      = '0.0050131+du0_dslpfetpu_ckt'  ua      = 4.0529e-013     ub      = ub_pu1
++uc      = 5.8999e-011     eu      = 1               vsat    = '50803+dvsat_dslpfetpu_ckt'  a0      = 0.1           
++ags     = 0.7075          a1      = 0               a2      = 0.55            b0      = -2e-009       
++b1      = 0               keta    = -0.002          dwg     = 0               dwb     = 0             
++pclm    = 0.81409         pdiblc1 = 7.28e-008       pdiblc2 = 0.0035          pdiblcb = 0             
++drout   = 0.56            pvag    = 0.92            delta   = 0.01            pscbe1  = 4.24e+008     
++pscbe2  = 1e-005          fprout  = 0               pdits   = 0.08295         pditsd  = 1             
++pditsl  = 100000          rsh     = 10              rsw     = 70.8            rdw     = 70.8          
++rdswmin = 0               rdwmin  = 0               rswmin  = 0               prwg    = 0             
++prwb    = 0               wr      = 1               alpha0  = 9e-012          alpha1  = 0.82          
++beta0   = 16.34           agidl   = '1.5833e-012+dagidl_dslpfetpu_ckt'  bgidl   = 3.3725e+008     cgidl   = 1             
++egidl   = 0.0528          aigbacc = 0.01236         bigbacc = 0.0060789       cigbacc = 0.063         
++nigbacc = 1               aigbinv = 0.35            bigbinv = 0.03            cigbinv = 0.006         
++eigbinv = 1               nigbinv = 3               aigc    = 0.0060305       bigc    = 0.000741      
++cigc    = 0.000294        aigsd   = 0.00619         bigsd   = 9.408e-005      cigsd   = 0.004752      
++nigc    = 1.5             poxedge = 1               pigcd   = 3.836           ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '5.4e-011+dcgso_dslpfetpu_ckt'  cgdo    = '5.4e-011+dcgdo_dslpfetpu_ckt'  cgbo    = 0               cgdl    = '7e-011+dcgdl_dslpfetpu_ckt'
++cgsl    = '7e-011+dcgsl_dslpfetpu_ckt'  clc     = 0               cle     = 0.6             cf      = '6.6e-011+dcf_dslpfetpu_ckt'
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 0.48084       
++moin    = 10.44           noff    = 1.6874          voffcv  = -0.046692     
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.0021691       kt1     = -0.31243        kt1l    = 0               kt2     = -0.028748     
++ute     = -0.58465        ua1     = 2.9903e-009     ub1     = -4.3283e-018    uc1     = -3.911e-011   
++prt     = 0               at      = 7674.6        
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 6e+007          ef      = 1.1           
++noia    = 4e+042          noib    = 1.01e+025       noic    = 1e+010          ntnoi   = 1             
++lintnoi = -1e-008       
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 4.378592e-008   jsws    = 1.2e-013        jswgs   = 1.53e-012       njs     = 0.999269      
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55            xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 3.0896e-007     jtsswgd = 3.0896e-007     njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.65728         xtsswgd = 0.55012         tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.789952        cjs     = '0.001410098+dcjs_dslpfetpu_ckt'
++mjs     = 0.358642        pbsws   = 0.278277        cjsws   = '5.495582e-011+dcjsws_dslpfetpu_ckt'  mjsws   = 0.122442      
++pbswgs  = 0.2             cjswgs  = '1.81e-010+dcjswgs_dslpfetpu_ckt'  mjswgs  = 0.9             tpb     = 0.0013066     
++tcj     = 0.00070724      tpbsw   = 0.00108         tcjsw   = 0.00082119      tpbswg  = 1e-005        
++tcjswg  = 0.0022          xtis    = 6.6854        
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
+
+
+* 
+* No part of this file can be released without the consent of SMIC.
+*
+**************************************************************************************************************
+* SMIC 40nm Logic Low Leakage 1P10M(1P9M, 1P8M, 1P7M) 0.242um^2 1.1V SRAM Cell SPICE model (for HSPICE only) *
+**************************************************************************************************************
+*
+* Release version    : 1.4
+*
+* Release date       : 11/30/2012
+*
+* Simulation tool    : Synopsys HSPICE version C-2008.09
+*
+* Model type         :
+*   MOSFET           : HSPICE Level 54(BSIM4v4.5)
+* 
+* Model name         :
+*   MOSFET           : Cell Area=0.299um^2 (pre-shrink)
+*        *------------------------------------------------------* 
+*        |            MOSFET type              |   1.1V         |
+*        |======================================================| 
+*        |   N Pull Down (W/L=0.142/0.055)     |  dslnfetpd_ckt |
+*        *------------------------------------------------------*
+*        |   N Pass Gate (W/L=0.11/0.059)      |  dslnfetwl_ckt |
+*        *------------------------------------------------------*
+*        |   P Load      (W/L=0.06/0.055)      |  dslpfetpu_ckt |
+*        *------------------------------------------------------*
+*
+*	 NOTE: Size Inform in table is for model reference only, CANNOT be directly used in netlist for simulation.
+*	       Please find the correct inform in model corresponding readme file. Thanks!
+*
+*
+* Valid temperature range is from -40C to 125C
+*
+***********************************************************************************
+*                              Pull Down NMOS MODEL                               *
+***********************************************************************************
+**
+.model  dslnfetpd_ckt2  nmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 4.95e-008       lmax    = 4.95e-008       wmin    = 1.275e-007      wmax    = 1.275e-007    
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 0             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-009+dtoxe_dslnfetpd_ckt'  dtox    = 2.12e-010       epsrox  = 3.9           
++toxref  = 2.37e-009       wint    = -2.25e-008      lint    = 8.8e-010        ll      = -2.845747e-016
++wl      = -9.27071e-016   lln     = 1               wln     = 0.86            lw      = -9.6e-016     
++ww      = 2.7e-016        lwn     = 1.02            wwn     = 1               lwl     = 3.0135e-023   
++wwl     = 1.69604e-022    llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '8.6e-009+dxl_dslnfetpd_ckt'
++xw      = '-4.2e-009+dxw_dslnfetpd_ckt'  dlc     = 7.62e-009       dwc     = 0               dlcig   = 3.5e-010      
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = vth0_pd2  k1      = 0.42431         k2      = -0.025585       k3      = 83.2          
++k3b     = 0               w0      = 2.5e-006        dvt0    = 0               dvt1    = 2.0671        
++dvt2    = 0               dvt0w   = 0               dvt1w   = 5724000         dvt2w   = -0.032        
++dsub    = 0.56            minv    = -0.35216        voffl   = -1e-009         dvtp0   = 9.535818e-006 
++dvtp1   = 0               lpe0    = 0               lpeb    = 0               vbm     = -3            
++xj      = 9.7e-008        ngate   = 2e+021          ndep    = 1.6e+017        phin    = 0.07032       
++cdsc    = 0.00036         cdscb   = 5e-005          cdscd   = 2e-005          cit     = '0.0017955+dcit_dslnfetpd_ckt'
++voff    = voff_pd2  nfactor = 1.3             eta0    = '0.20385+deta0_dslnfetpd_ckt'  etab    = -0.12584      
++u0      = '0.017762+du0_dslnfetpd_ckt'  ua      = -8.7437e-010    ub      = ub_pd2  uc      = 1.7247e-010   
++eu      = 1.67            vsat    = '102800+dvsat_dslnfetpd_ckt'  a0      = 2.3             ags     = 0.82938       
++a1      = 0               a2      = 1               b0      = 2.1597e-008     b1      = 0             
++keta    = -0.0085         dwg     = 0               dwb     = 0               pclm    = 0.042628      
++pdiblc1 = 0               pdiblc2 = 0               pdiblcb = 0               drout   = 0.56          
++pvag    = 0               delta   = 0.0107568       pscbe1  = 6.24e+008       pscbe2  = 1e-005        
++pdits   = 1.12335         pditsd  = 1.8439          pditsl  = 4357153         rsh     = 12            
++rsw     = 24              rdw     = 24              rdwmin  = 0               rswmin  = 0             
++prwg    = 1               prwb    = 0               wr      = 1               alpha0  = 7.00602e-008  
++alpha1  = 1.3046          beta0   = 13.39           agidl   = '1.3084e-012+dagidl_dslnfetpd_ckt'  bgidl   = 2.7027e+008   
++cgidl   = 15.206          egidl   = 0.11216         aigbacc = 0.02487         bigbacc = 0.00171       
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949      
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3               aigc    = 0.012948      
++bigc    = 0.0015549       cigc    = 0.03066         aigsd   = 0.01038         bigsd   = 8.5433e-005   
++cigsd   = 0.001674        nigc    = 2.43            poxedge = 1               pigcd   = 2.1074        
++ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '6.73e-011+dcgso_dslnfetpd_ckt'  cgdo    = '6.73e-011+dcgdo_dslnfetpd_ckt'  cgbo    = 0               cgdl    = '5.7e-011+dcgdl_dslnfetpd_ckt'
++cgsl    = '5.7e-011+dcgsl_dslnfetpd_ckt'  clc     = 1e-007          cle     = 0.6             cf      = '7.715e-011+dcf_dslnfetpd_ckt'
++acde    = 0.247818        moin    = 5.4             noff    = 2.0879          voffcv  = -0.12248      
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.002416        kt1     = -0.27173        kt1l    = -9.546e-011     kt2     = -0.0073638    
++ute     = -0.24155        ua1     = 1.6926e-009     ub1     = -1.5622e-018    uc1     = 1.7425e-011   
++prt     = 5.5             at      = 45501         
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 4.1e+007        ef      = 0.98          
++noia    = 4.7e+041        noib    = 4.29316e+025    noic    = 5.9625e+008     ntnoi   = 1             
++lintnoi = 0             
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 1.71349e-008    jsws    = 2.56848e-014    jswgs   = 5.96e-013       njs     = 0.92934       
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.3             xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 1.9274e-006     jtsswgd = 1.9274e-006     njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.66042         xtsswgd = 0.43569         tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.458831        cjs     = '0.001473228+dcjs_dslnfetpd_ckt'
++mjs     = 0.258409        pbsws   = 0.9848          cjsws   = '5.14781e-011+dcjsws_dslnfetpd_ckt'  mjsws   = 0.22454       
++pbswgs  = 0.2             cjswgs  = '2.8e-010+dcjswgs_dslnfetpd_ckt'  mjswgs  = 0.97            tpb     = 0.00079726    
++tcj     = 0.00055752      tpbsw   = 0.0016917       tcjsw   = 0.0097061       tpbswg  = 0.00016237    
++tcjswg  = 0.00056776      xtis    = 3.38          
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
+
+***********************************************************************************
+*                              Pass Gate NMOS MODEL                               *
+***********************************************************************************
+**
+.model  dslnfetwl_ckt2  nmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 5.3e-008        lmax    = 5.3e-008        wmin    = 9.9e-008        wmax    = 9.9e-008      
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 0             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-009+dtoxe_dslnfetwl_ckt'       dtox    = 2.12e-010       epsrox  = 3.9           
++toxref  = 2.37e-009       wint    = -2.25e-008      lint    = 8.8e-010        ll      = -2.845747e-016
++wl      = -9.27071e-016   lln     = 1               wln     = 0.86            lw      = -9.6e-016     
++ww      = 2.7e-016        lwn     = 1.02            wwn     = 1               lwl     = 3.0135e-023   
++wwl     = 1.69604e-022    llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '7.5e-009+dxl_dslnfetwl_ckt'      
++xw      = '-4.2e-009+dxw_dslnfetwl_ckt'       dlc     = 7.62e-009       dwc     = 0               dlcig   = 3.5e-010      
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = vth0_wl2         k1      = 0.42431         k2      = -0.00035952     k3      = 83.2          
++k3b     = 0               w0      = 2.5e-006        dvt0    = 0               dvt1    = 2.0671        
++dvt2    = 0               dvt0w   = 0               dvt1w   = 5724000         dvt2w   = -0.032        
++dsub    = 0.56            minv    = -0.35216        voffl   = -1e-009         dvtp0   = 9.535818e-006 
++dvtp1   = 0               lpe0    = 0               lpeb    = 0               vbm     = -3            
++xj      = 9.7e-008        ngate   = 2e+021          ndep    = 1.6e+017        phin    = 0.07032       
++cdsc    = 0.00037152      cdscb   = 4.92e-005       cdscd   = 2e-005          cit     = '0.0026751+dcit_dslnfetwl_ckt'     
++voff    = voff_wl2         nfactor = 1.3             eta0    = '0.1946+deta0_dslnfetwl_ckt'          etab    = -0.18242      
++u0      = '0.010934+du0_dslnfetwl_ckt'        ua      = -1.0589e-009    ub      = ub_wl2     uc      = 2.9209e-011   
++eu      = 1.67            vsat    = '101400+dvsat_dslnfetwl_ckt'          a0      = 1               ags     = 1.38          
++a1      = -0.94           a2      = 1               b0      = 2.6781e-008     b1      = 0             
++keta    = -0.0085         dwg     = 0               dwb     = 0               pclm    = 0.20641       
++pdiblc1 = 0               pdiblc2 = 0               pdiblcb = 0               drout   = 0.56          
++pvag    = 0               delta   = 0.0107568       pscbe1  = 6.24e+008       pscbe2  = 1e-005        
++pdits   = 1.12335         pditsd  = 1.4294          pditsl  = 4357153         rsh     = 12            
++rsw     = 24              rdw     = 24              rdwmin  = 0               rswmin  = 0             
++prwg    = 1               prwb    = 0               wr      = 1               alpha0  = 7.00602e-008  
++alpha1  = 1.3046          beta0   = 13.39           agidl   = '2.3091e-012+dagidl_dslnfetwl_ckt'     bgidl   = 6.264e+008    
++cgidl   = 15.206          egidl   = 0               aigbacc = 0.02487         bigbacc = 0.00171       
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949      
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3               aigc    = 0.012234      
++bigc    = 0.0017424       cigc    = 0.035782        aigsd   = 0.01075         bigsd   = 0.000663      
++cigsd   = 0.00204         nigc    = 2.43            poxedge = 1               pigcd   = 3.1821        
++ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '6.73e-011+dcgso_dslnfetwl_ckt'       cgdo    = '6.73e-011+dcgdo_dslnfetwl_ckt'       cgbo    = 0               cgdl    = '5.7e-011+dcgdl_dslnfetwl_ckt'      
++cgsl    = '5.7e-011+dcgsl_dslnfetwl_ckt'        clc     = 1e-007          cle     = 0.6             cf      = '7.715e-011+dcf_dslnfetwl_ckt'    
++acde    = 0.247818        moin    = 5.4             noff    = 2.0879          voffcv  = -0.12248      
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.002352        kt1     = -0.27445        kt1l    = 0               kt2     = -0.052        
++ute     = -0.2781         ua1     = 4.5441e-010     ub1     = -9.9429e-020    uc1     = 6.821e-011    
++prt     = 0               at      = 5000          
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 4.1e+007        ef      = 0.98          
++noia    = 4.7e+041        noib    = 4.29316e+025    noic    = 5.9625e+008     ntnoi   = 1             
++lintnoi = 0             
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 1.71349e-008    jsws    = 2.56848e-014    jswgs   = 5.96e-013       njs     = 0.92934       
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.3             xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 1e-007          jtsswgd = 1.2559e-006     njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.44259         xtsswgd = 0.44259         tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.458831        cjs     = '0.001473228+dcjs_dslnfetwl_ckt'   
++mjs     = 0.258409        pbsws   = 0.9848          cjsws   = '5.14781e-011+dcjsws_dslnfetwl_ckt'    mjsws   = 0.22454       
++pbswgs  = 0.2             cjswgs  = '2.8e-010+dcjswgs_dslnfetwl_ckt'        mjswgs  = 0.97            tpb     = 0.00079726    
++tcj     = 0.00055752      tpbsw   = 0.0016917       tcjsw   = 0.0097061       tpbswg  = 0.00016237    
++tcjswg  = 0.00056776      xtis    = 3.38          
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
+
+***********************************************************************************
+*                              Pull Up PMOS MODEL                               *
+***********************************************************************************
+**
+.model  dslpfetpu_ckt2  pmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 4.95e-008       lmax    = 4.95e-008       wmin    = 5.4e-008        wmax    = 5.4e-008      
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 0             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.7e-009+dtoxe_dslpfetpu_ckt'  dtox    = 2.1e-010        epsrox  = 3.9           
++toxref  = 2.7e-009        wint    = -1.02e-008      lint    = -1.013e-008     ll      = 2.1686916e-016
++wl      = 0               lln     = 1.05            wln     = 1               lw      = 0             
++ww      = 0               lwn     = 1               wwn     = 0.98            lwl     = 0             
++wwl     = 0               llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '9.9e-009+dxl_dslpfetpu_ckt'
++xw      = '-5.2e-009+dxw_dslpfetpu_ckt'  dlc     = 8.28e-009       dwc     = 0               dlcig   = 4e-009        
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = vth0_pu2  k1      = 0.29049         k2      = -0.061888       k3      = 80            
++k3b     = 0               w0      = 2.5e-006        dvt0    = 0.53551         dvt1    = 0.7           
++dvt2    = -0.002          dvt0w   = 0               dvt1w   = 5300000         dvt2w   = -0.032        
++dsub    = 0.56            minv    = -0.28           voffl   = 0               dvtp0   = 1.2947e-006   
++dvtp1   = 0               lambda  = 0               lpe0    = 0               lpeb    = 0             
++xj      = 8.6e-008        ngate   = 8e+020          ndep    = 1e+017          nsd     = 1e+020        
++phin    = 0.06            cdsc    = 0.00024         ud      = 1e+014          up      = 0             
++lp      = 1e-008          cdscb   = 0               cdscd   = 0.001           cit     = '0.0021524+dcit_dslpfetpu_ckt'
++voff    = voff_pu2  nfactor = 1.353           eta0    = '0.077318+deta0_dslpfetpu_ckt'  etab    = -0.036771     
++vfb     = -1              u0      = '0.0050131+du0_dslpfetpu_ckt'  ua      = 4.0529e-013     ub      = ub_pu2
++uc      = 5.8999e-011     eu      = 1               vsat    = '50803+dvsat_dslpfetpu_ckt'  a0      = 0.1           
++ags     = 0.7075          a1      = 0               a2      = 0.55            b0      = -2e-009       
++b1      = 0               keta    = -0.002          dwg     = 0               dwb     = 0             
++pclm    = 0.81409         pdiblc1 = 7.28e-008       pdiblc2 = 0.0035          pdiblcb = 0             
++drout   = 0.56            pvag    = 0.92            delta   = 0.01            pscbe1  = 4.24e+008     
++pscbe2  = 1e-005          fprout  = 0               pdits   = 0.08295         pditsd  = 1             
++pditsl  = 100000          rsh     = 10              rsw     = 70.8            rdw     = 70.8          
++rdswmin = 0               rdwmin  = 0               rswmin  = 0               prwg    = 0             
++prwb    = 0               wr      = 1               alpha0  = 9e-012          alpha1  = 0.82          
++beta0   = 16.34           agidl   = '1.5833e-012+dagidl_dslpfetpu_ckt'  bgidl   = 3.3725e+008     cgidl   = 1             
++egidl   = 0.0528          aigbacc = 0.01236         bigbacc = 0.0060789       cigbacc = 0.063         
++nigbacc = 1               aigbinv = 0.35            bigbinv = 0.03            cigbinv = 0.006         
++eigbinv = 1               nigbinv = 3               aigc    = 0.0060305       bigc    = 0.000741      
++cigc    = 0.000294        aigsd   = 0.00619         bigsd   = 9.408e-005      cigsd   = 0.004752      
++nigc    = 1.5             poxedge = 1               pigcd   = 3.836           ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '5.4e-011+dcgso_dslpfetpu_ckt'  cgdo    = '5.4e-011+dcgdo_dslpfetpu_ckt'  cgbo    = 0               cgdl    = '7e-011+dcgdl_dslpfetpu_ckt'
++cgsl    = '7e-011+dcgsl_dslpfetpu_ckt'  clc     = 0               cle     = 0.6             cf      = '6.6e-011+dcf_dslpfetpu_ckt'
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 0.48084       
++moin    = 10.44           noff    = 1.6874          voffcv  = -0.046692     
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.0021691       kt1     = -0.31243        kt1l    = 0               kt2     = -0.028748     
++ute     = -0.58465        ua1     = 2.9903e-009     ub1     = -4.3283e-018    uc1     = -3.911e-011   
++prt     = 0               at      = 7674.6        
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 6e+007          ef      = 1.1           
++noia    = 4e+042          noib    = 1.01e+025       noic    = 1e+010          ntnoi   = 1             
++lintnoi = -1e-008       
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 4.378592e-008   jsws    = 1.2e-013        jswgs   = 1.53e-012       njs     = 0.999269      
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55            xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 3.0896e-007     jtsswgd = 3.0896e-007     njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.65728         xtsswgd = 0.55012         tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.789952        cjs     = '0.001410098+dcjs_dslpfetpu_ckt'
++mjs     = 0.358642        pbsws   = 0.278277        cjsws   = '5.495582e-011+dcjsws_dslpfetpu_ckt'  mjsws   = 0.122442      
++pbswgs  = 0.2             cjswgs  = '1.81e-010+dcjswgs_dslpfetpu_ckt'  mjswgs  = 0.9             tpb     = 0.0013066     
++tcj     = 0.00070724      tpbsw   = 0.00108         tcjsw   = 0.00082119      tpbswg  = 1e-005        
++tcjswg  = 0.0022          xtis    = 6.6854        
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************

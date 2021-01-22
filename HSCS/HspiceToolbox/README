@@ -1,0 +1,8 @@
+Hspice Toolbox for Matlab: 
+         written by Mike Perrott at Silicon Laboratories, 1999
+                 no warranty or support provided
+
+Documentation:  document.pdf
+
+Files:  loadsig.mexsol: mexfile binary compiled for Matlab running under Solaris
+           other files: Matlab files used for signal plotting and postprocessing

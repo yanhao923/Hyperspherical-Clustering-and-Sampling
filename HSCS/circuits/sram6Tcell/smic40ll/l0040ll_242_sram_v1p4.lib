@@ -1,0 +1,189 @@
+* This file contains 40nm low leakage 0.242um^2 1.1V SRAM cell corner model parameters.
+* Five GLOBAL corners are supported: TT, FF, SS, FNSP and SNFP. MC corner used for full statistical analysis.
+* The "globalmod" and "mismod" used as flags for global variation and local mismatch simualtion when set to 1 respectively .
+* This file should be used with model parameter file 'l0040ll_242_sram_v1p4.mdl'.
+* No part of this file can be released without the consent of SMIC.
+******************
+* MOS Corner model      
+******************
+.LIB TT
+.option gmindc=1e-14 scale=0.9
+.param
++sigma_mis_voff=agauss(0,3,3)
++sigma_mis_vth0=agauss(0,3,3)
++sigma_mis_ub=agauss(0,3,3)
+
+*Pull Down NMOS
+.subckt dslnfetpd_ckt1  d g s b w=1e-6 l=1e-6 sa=0 sb=0 sd=0 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 sca=0 scb=0 scc=0 globalmod=1 mismod=1
++dtoxe_dslnfetpd_ckt=	0	dxl_dslnfetpd_ckt	 =	0	dxw_dslnfetpd_ckt	=	0 
++dcjs_dslnfetpd_ckt	=	0	dcjsws_dslnfetpd_ckt =	0      dcf_dslnfetpd_ckt	=	0 
++dcjswgs_dslnfetpd_ckt=	0	dcgdo_dslnfetpd_ckt	=	0	dcgso_dslnfetpd_ckt	=	0 
++dcgdl_dslnfetpd_ckt=	0	dcgsl_dslnfetpd_ckt	=	0	dagidl_dslnfetpd_ckt	=	0 
++du0_dslnfetpd_ckt	=	0	deta0_dslnfetpd_ckt	=	0	dcit_dslnfetpd_ckt   =     0
++dvsat_dslnfetpd_ckt=      0
+
++dvoff_dslnfetpd_ckt        = '0+advoff_dslnfetpd_ckt*(btdvoff_dslnfetpd_ckt*(temper-25)*(temper-25)+atdvoff_dslnfetpd_ckt*(temper-25)+1)*geo_fac*sigma_mis_voff*mismod'
++dvth0_dslnfetpd_ckt        = '0+advth0_dslnfetpd_ckt*(btdvth0_dslnfetpd_ckt*(temper-25)*(temper-25)+atdvth0_dslnfetpd_ckt*(temper-25)+1)*geo_fac*sigma_mis_vth0*mismod'
++dub_dslnfetpd_ckt          = '0+adub_dslnfetpd_ckt*(btdub_dslnfetpd_ckt*(temper-25)*(temper-25)+atdub_dslnfetpd_ckt*(temper-25)+1)*geo_fac*sigma_mis_ub*mismod'
+
++geo_fac='1/sqrt(wef*lef)'
++lef='l*scale_mos+8.6e-9'
++wef='w*scale_mos-4.2e-9'
++scale_mos = 0.9
++advoff_dslnfetpd_ckt=4.5E-09
++advth0_dslnfetpd_ckt=1.65E-09
++adub_dslnfetpd_ckt =5.0E-27
++atdvoff_dslnfetpd_ckt=-5.69E-3
++atdvth0_dslnfetpd_ckt=-5.21E-4
++atdub_dslnfetpd_ckt=0.013
++btdvoff_dslnfetpd_ckt=1.24E-5
++btdvth0_dslnfetpd_ckt=-8.48E-7
++btdub_dslnfetpd_ckt=1.03E-5
+
+m1 d g s b dslnfetpd_ckt1 w=w l=l sa=sa sb=sb sd=sd as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs sca=sca scb=scb scc=scc
+.inc 'l0040ll_242_sram_v1p4.mdl' 
+.ends dslnfetpd_ckt1
+
+*Pass Gate NMOS
+.subckt dslnfetwl_ckt1  d g s b w=1e-6 l=1e-6 sa=0 sb=0 sd=0 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 sca=0 scb=0 scc=0 globalmod=1 mismod=1	
++dtoxe_dslnfetwl_ckt=	0	dxl_dslnfetwl_ckt	 =	0	dxw_dslnfetwl_ckt	=	0 
++dcjs_dslnfetwl_ckt	=	0	dcjsws_dslnfetwl_ckt =	0      dcf_dslnfetwl_ckt	=	0 
++dcjswgs_dslnfetwl_ckt=	0	dcgdo_dslnfetwl_ckt	=	0	dcgso_dslnfetwl_ckt	=	0 
++dcgdl_dslnfetwl_ckt=	0	dcgsl_dslnfetwl_ckt	=	0	dagidl_dslnfetwl_ckt	=	0 
++du0_dslnfetwl_ckt	=	0      deta0_dslnfetwl_ckt	=	0	dcit_dslnfetwl_ckt   =      0	
++dvsat_dslnfetwl_ckt  =    0 
+
++dvoff_dslnfetwl_ckt        = '0+advoff_dslnfetwl_ckt*(atdvoff_dslnfetwl_ckt*(temper-25)+1)*geo_fac*sigma_mis_voff*mismod'
++dvth0_dslnfetwl_ckt        = '0+advth0_dslnfetwl_ckt*(atdvth0_dslnfetwl_ckt*(temper-25)+1)*geo_fac*sigma_mis_vth0*mismod'
++dub_dslnfetwl_ckt          = '0+adub_dslnfetwl_ckt*(btdub_dslnfetwl_ckt*(temper-25)*(temper-25)+atdub_dslnfetwl_ckt*(temper-25)+1)*geo_fac*sigma_mis_ub*mismod'
+
++geo_fac='1/sqrt(wef*lef)'
++lef='l*scale_mos+7.5e-9'
++wef='w*scale_mos-4.2e-9'
++scale_mos = 0.9
++advoff_dslnfetwl_ckt=3.0E-09
++advth0_dslnfetwl_ckt=2.18E-09
++adub_dslnfetwl_ckt =1.0E-26
++atdvoff_dslnfetwl_ckt=-0.002
++atdvth0_dslnfetwl_ckt=-0.0037
++atdub_dslnfetwl_ckt=0.0108
++btdub_dslnfetwl_ckt=-4.76E-5
+
+m1 d g s b dslnfetwl_ckt1 w=w l=l sa=sa sb=sb sd=sd as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs sca=sca scb=scb scc=scc
+.inc 'l0040ll_242_sram_v1p4.mdl'
+.ends dslnfetwl_ckt1
+
+*Load PMOS
+.subckt dslpfetpu_ckt1  d g s b w=1e-6 l=1e-6 sa=0 sb=0 sd=0 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 sca=0 scb=0 scc=0 globalmod=1 mismod=1
++dtoxe_dslpfetpu_ckt=	0	dxl_dslpfetpu_ckt	=	0	dxw_dslpfetpu_ckt	=	0 
++dcjs_dslpfetpu_ckt	=	0	dcjsws_dslpfetpu_ckt=	0      dcf_dslpfetpu_ckt	=	0 
++dcjswgs_dslpfetpu_ckt=	0	dcgdo_dslpfetpu_ckt	=	0	dcgso_dslpfetpu_ckt	=	0 
++dcgdl_dslpfetpu_ckt=	0	dcgsl_dslpfetpu_ckt	=	0	dcit_dslpfetpu_ckt	=	0 
++du0_dslpfetpu_ckt	=	0	deta0_dslpfetpu_ckt=        0     dvsat_dslpfetpu_ckt =       0
++dagidl_dslpfetpu_ckt =    0
+
++dvoff_dslpfetpu_ckt        = '0+advoff_dslpfetpu_ckt*geo_fac*sigma_mis_voff*mismod'
++dvth0_dslpfetpu_ckt        = '0+advth0_dslpfetpu_ckt*geo_fac*sigma_mis_vth0*mismod'
++dub_dslpfetpu_ckt          = '0+adub_dslpfetpu_ckt*geo_fac*sigma_mis_ub*mismod'
+
++geo_fac='1/sqrt(wef*lef)'
++lef='l*scale_mos+9.9e-9'
++wef='w*scale_mos-5.2e-9'
++scale_mos = 0.9
++advoff_dslpfetpu_ckt=1.0E-11
++advth0_dslpfetpu_ckt=1.965E-09
++adub_dslpfetpu_ckt =3.9E-26
+
+m1 d g s b dslpfetpu_ckt1 w=w l=l sa=sa sb=sb sd=sd as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs sca=sca scb=scb scc=scc
+.inc 'l0040ll_242_sram_v1p4.mdl'
+.ends dslpfetpu_ckt1
+
+*Pull Down NMOS
+.subckt dslnfetpd_ckt2  d g s b w=1e-6 l=1e-6 sa=0 sb=0 sd=0 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 sca=0 scb=0 scc=0 globalmod=1 mismod=1
++dtoxe_dslnfetpd_ckt=	0	dxl_dslnfetpd_ckt	 =	0	dxw_dslnfetpd_ckt	=	0 
++dcjs_dslnfetpd_ckt	=	0	dcjsws_dslnfetpd_ckt =	0      dcf_dslnfetpd_ckt	=	0 
++dcjswgs_dslnfetpd_ckt=	0	dcgdo_dslnfetpd_ckt	=	0	dcgso_dslnfetpd_ckt	=	0 
++dcgdl_dslnfetpd_ckt=	0	dcgsl_dslnfetpd_ckt	=	0	dagidl_dslnfetpd_ckt	=	0 
++du0_dslnfetpd_ckt	=	0	deta0_dslnfetpd_ckt	=	0	dcit_dslnfetpd_ckt   =     0
++dvsat_dslnfetpd_ckt=      0
+
++dvoff_dslnfetpd_ckt        = '0+advoff_dslnfetpd_ckt*(btdvoff_dslnfetpd_ckt*(temper-25)*(temper-25)+atdvoff_dslnfetpd_ckt*(temper-25)+1)*geo_fac*sigma_mis_voff*mismod'
++dvth0_dslnfetpd_ckt        = '0+advth0_dslnfetpd_ckt*(btdvth0_dslnfetpd_ckt*(temper-25)*(temper-25)+atdvth0_dslnfetpd_ckt*(temper-25)+1)*geo_fac*sigma_mis_vth0*mismod'
++dub_dslnfetpd_ckt          = '0+adub_dslnfetpd_ckt*(btdub_dslnfetpd_ckt*(temper-25)*(temper-25)+atdub_dslnfetpd_ckt*(temper-25)+1)*geo_fac*sigma_mis_ub*mismod'
+
++geo_fac='1/sqrt(wef*lef)'
++lef='l*scale_mos+8.6e-9'
++wef='w*scale_mos-4.2e-9'
++scale_mos = 0.9
++advoff_dslnfetpd_ckt=4.5E-09
++advth0_dslnfetpd_ckt=1.65E-09
++adub_dslnfetpd_ckt =5.0E-27
++atdvoff_dslnfetpd_ckt=-5.69E-3
++atdvth0_dslnfetpd_ckt=-5.21E-4
++atdub_dslnfetpd_ckt=0.013
++btdvoff_dslnfetpd_ckt=1.24E-5
++btdvth0_dslnfetpd_ckt=-8.48E-7
++btdub_dslnfetpd_ckt=1.03E-5
+
+m1 d g s b dslnfetpd_ckt2 w=w l=l sa=sa sb=sb sd=sd as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs sca=sca scb=scb scc=scc
+.inc 'l0040ll_242_sram_v1p4.mdl' 
+.ends dslnfetpd_ckt2
+
+*Pass Gate NMOS
+.subckt dslnfetwl_ckt2 d g s b w=1e-6 l=1e-6 sa=0 sb=0 sd=0 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 sca=0 scb=0 scc=0 globalmod=1 mismod=1	
++dtoxe_dslnfetwl_ckt=	0	dxl_dslnfetwl_ckt	 =	0	dxw_dslnfetwl_ckt	=	0 
++dcjs_dslnfetwl_ckt	=	0	dcjsws_dslnfetwl_ckt =	0      dcf_dslnfetwl_ckt	=	0 
++dcjswgs_dslnfetwl_ckt=	0	dcgdo_dslnfetwl_ckt	=	0	dcgso_dslnfetwl_ckt	=	0 
++dcgdl_dslnfetwl_ckt=	0	dcgsl_dslnfetwl_ckt	=	0	dagidl_dslnfetwl_ckt	=	0 
++du0_dslnfetwl_ckt	=	0      deta0_dslnfetwl_ckt	=	0	dcit_dslnfetwl_ckt   =      0	
++dvsat_dslnfetwl_ckt  =    0 
+
++dvoff_dslnfetwl_ckt        = '0+advoff_dslnfetwl_ckt*(atdvoff_dslnfetwl_ckt*(temper-25)+1)*geo_fac*sigma_mis_voff*mismod'
++dvth0_dslnfetwl_ckt        = '0+advth0_dslnfetwl_ckt*(atdvth0_dslnfetwl_ckt*(temper-25)+1)*geo_fac*sigma_mis_vth0*mismod'
++dub_dslnfetwl_ckt          = '0+adub_dslnfetwl_ckt*(btdub_dslnfetwl_ckt*(temper-25)*(temper-25)+atdub_dslnfetwl_ckt*(temper-25)+1)*geo_fac*sigma_mis_ub*mismod'
+
++geo_fac='1/sqrt(wef*lef)'
++lef='l*scale_mos+7.5e-9'
++wef='w*scale_mos-4.2e-9'
++scale_mos = 0.9
++advoff_dslnfetwl_ckt=3.0E-09
++advth0_dslnfetwl_ckt=2.18E-09
++adub_dslnfetwl_ckt =1.0E-26
++atdvoff_dslnfetwl_ckt=-0.002
++atdvth0_dslnfetwl_ckt=-0.0037
++atdub_dslnfetwl_ckt=0.0108
++btdub_dslnfetwl_ckt=-4.76E-5
+
+m1 d g s b dslnfetwl_ckt2 w=w l=l sa=sa sb=sb sd=sd as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs sca=sca scb=scb scc=scc
+.inc 'l0040ll_242_sram_v1p4.mdl'
+.ends dslnfetwl_ckt2
+
+*Load PMOS
+.subckt dslpfetpu_ckt2  d g s b w=1e-6 l=1e-6 sa=0 sb=0 sd=0 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 sca=0 scb=0 scc=0 globalmod=1 mismod=1
++dtoxe_dslpfetpu_ckt=	0	dxl_dslpfetpu_ckt	=	0	dxw_dslpfetpu_ckt	=	0 
++dcjs_dslpfetpu_ckt	=	0	dcjsws_dslpfetpu_ckt=	0      dcf_dslpfetpu_ckt	=	0 
++dcjswgs_dslpfetpu_ckt=	0	dcgdo_dslpfetpu_ckt	=	0	dcgso_dslpfetpu_ckt	=	0 
++dcgdl_dslpfetpu_ckt=	0	dcgsl_dslpfetpu_ckt	=	0	dcit_dslpfetpu_ckt	=	0 
++du0_dslpfetpu_ckt	=	0	deta0_dslpfetpu_ckt=        0     dvsat_dslpfetpu_ckt =       0
++dagidl_dslpfetpu_ckt =    0
+
++dvoff_dslpfetpu_ckt        = '0+advoff_dslpfetpu_ckt*geo_fac*sigma_mis_voff*mismod'
++dvth0_dslpfetpu_ckt        = '0+advth0_dslpfetpu_ckt*geo_fac*sigma_mis_vth0*mismod'
++dub_dslpfetpu_ckt          = '0+adub_dslpfetpu_ckt*geo_fac*sigma_mis_ub*mismod'
+
++geo_fac='1/sqrt(wef*lef)'
++lef='l*scale_mos+9.9e-9'
++wef='w*scale_mos-5.2e-9'
++scale_mos = 0.9
++advoff_dslpfetpu_ckt=1.0E-11
++advth0_dslpfetpu_ckt=1.965E-09
++adub_dslpfetpu_ckt =3.9E-26
+
+m1 d g s b dslpfetpu_ckt2 w=w l=l sa=sa sb=sb sd=sd as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs sca=sca scb=scb scc=scc
+.inc 'l0040ll_242_sram_v1p4.mdl'
+.ends dslpfetpu_ckt2
+
+
+.ENDL  TT
+
+
