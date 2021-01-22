@@ -14,7 +14,7 @@ HSCS(folder name)
 -    HSCS.m (algorithm)
 -    runSimulation.m (select the corresponding circuit and run it)
     
-## Usage
+## How to run HSCS?
 - Step1. Install HSPICE and MATLAB.
 - Step2. Open HSCS.m and Configure software location according to the notes in HSCS.m
 - Step3. Choose the netlist file with ".sp" as suffix in folder named "circuit" and config it in HSCS.m according to notes.
