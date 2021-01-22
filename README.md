@@ -8,9 +8,9 @@ A way to partition failure areas from aspect of angles.
 ## Components
 
 ## Usage
-Step1. Install HSPICE and MATLAB.
-Step2. Open HSCS.m and Configure software location according to the notes in HSCS.m
-Step3. Choose the netlist file with ".sp" as suffix in folder named "circuit" and config it in HSCS.m according to notes.
-Step4. Running HSCS.m and wait for final results named "pfail" and "p_fail_total".
+- Step1. Install HSPICE and MATLAB.
+- Step2. Open HSCS.m and Configure software location according to the notes in HSCS.m
+- Step3. Choose the netlist file with ".sp" as suffix in folder named "circuit" and config it in HSCS.m according to notes.
+- Step4. Running HSCS.m and wait for final results named "pfail" and "p_fail_total".
 ## see also
 http://eda.ee.ucla.edu/wei/pub/ispd16_spkmeans_slides.pdf
