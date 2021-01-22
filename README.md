@@ -6,7 +6,14 @@ Different from traditional monte carlo, IS constructs a new “proposed” sampl
 2. Hyperspherical K-means: 
 A way to partition failure areas from aspect of angles.
 ## Components
-
+HSCS(folder name)
+-   ---circuits (store circuit netlist named as "xxx.sp")
+-   ---HspictToolbox (connect MATLAB and HSPICE)
+-   ---utility (store function)
+-    getMeanSigma.m (provide process variation)
+-    HSCS.m (algorithm)
+-    runSimulation.m (select the corresponding circuit and run it)
+    
 ## Usage
 - Step1. Install HSPICE and MATLAB.
 - Step2. Open HSCS.m and Configure software location according to the notes in HSCS.m
