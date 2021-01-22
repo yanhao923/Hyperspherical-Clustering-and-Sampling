@@ -1,4 +1,4 @@
-# Source code of paper: Hyperspherical Clustering and Sampling for Rare Event Analysis with Multiple Failure Region Coverage
+# Source code of paper: Hyperspherical Clustering and Sampling for Rare Event Analysis with Multiple Failure Region Coverage ( created by Wei Wu weiw@seas.ucla.edu)
 ## algorithms
 the package implements algorithms outlines in ["Hyperspherical Clustering and Sampling for Rare Event Analysis with Multiple Failure Region Coverage"](http://eda.ee.ucla.edu/pub/C164.pdf)
 1. Importance Sampling: 
